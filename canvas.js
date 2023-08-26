@@ -7,9 +7,11 @@
 	let centerX =  canvas.width / 2;
 	let speed = 10;
 	let deacceleration = 0.95;
-	const centerY = canvas.height / 2;
-	const radius = 5;
+	let centerY = canvas.height / 2;
+	let radius = 5;
 	let alpha = 1;
+	let beamQ = 10;
+	let angle = 0, increase;
 	
 	drawCircle(centerX)
 
@@ -20,34 +22,35 @@
 		context.fill();
 	}
 
-	function distributeAroundRadial (array, radius, addTo, spiral, itemQ) {
-		var arrayQ = (itemQ === undefined)?array.length:itemQ;
-		var increase = (Math.PI * 2)/arrayQ;
-		var  angle = 0;
-		for( var i = 0; i < arrayQ; i++ ) {
-			var item = array[i];
-			item.rotation = 0;
-			item.x =  radius * Math.cos( angle ) ;
-			item.y =  radius * Math.sin( angle ) ;
-			angle += increase;
-			addTo.addChild(item);
-			if(spiral === true)radius +=3;
-		}
+	function returnXY(radius, angle) {
+		return {x: (canvas.width / 2) + radius * Math.cos( angle ), y: (canvas.height / 2) + radius * Math.sin( angle ) }
 	}
+
 
 
 	function animate () {
 		context.clearRect(0,0,canvas.width,canvas.height)
-		centerX += speed;
+		
 		speed *= deacceleration;
 		alpha *= deacceleration;
-		if (speed < 0.1) {
-			centerX = canvas.width / 2;
-			speed = 8;
-			alpha = 1;
+		
+		
+		for (let i = 0; i < beamQ; i++) {
+			centerX += speed;
+			increase = (Math.PI * 2) / beamQ;
+			angle += increase;
+			let { x, y } = returnXY(radius, angle);
+			drawCircle(x, y, alpha);
 		}
 
-		drawCircle(centerX, centerY, alpha);
+		radius ++;
+
+		if (speed < 0.1) {
+			speed = 8;
+			alpha = 1;
+			radius = 0;
+		}
+
 		requestAnimationFrame(animate)
 	}
 	animate();
