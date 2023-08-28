@@ -46,7 +46,7 @@
 				let { x, y } = this.returnXY(this.radius, this.angle);
 				this.beams[i].draw(x, y, this.alpha);
 				this.alpha *= 0.997;
-				this.radius += 1;
+				this.radius += 0.5;
 				if (this.radius > Math.max(canvas.width, canvas.height) / 2) {
 					this.reset();
 				}
