@@ -100,7 +100,8 @@
 
 		draw(x, y, alpha, color) {
 			context.beginPath();
-			context.arc(x * this.sizeVariance, y * this.sizeVariance, this.size, 0, 2 * Math.PI, false);
+			context.rect(x * this.sizeVariance, y * this.sizeVariance, this.size, this.size)
+			// context.arc(x * this.sizeVariance, y * this.sizeVariance, this.size, 0, 2 * Math.PI, false);
 			context.fillStyle = `rgba(${color[0]}, ${color[1]}, ${color[2]}, ${alpha})`;
 			context.fill();
 		}
