@@ -100,23 +100,25 @@
 
 		draw(x, y, alpha, color) {
 			context.beginPath();
-			context.rect(x * this.sizeVariance, y * this.sizeVariance, this.size, this.size)
-			// context.arc(x * this.sizeVariance, y * this.sizeVariance, this.size, 0, 2 * Math.PI, false);
+			// context.rect(x * this.sizeVariance, y * this.sizeVariance, this.size, this.size)
+			context.arc(x * this.sizeVariance, y * this.sizeVariance, this.size, 0, 2 * Math.PI, false);
 			context.fillStyle = `rgba(${color[0]}, ${color[1]}, ${color[2]}, ${alpha})`;
 			context.fill();
 		}
 	}
-
-	const firework = new Firework(3);
-	const firework2 = new Firework(5);
-	const firework3 = new Firework(1);
+	const fireworks = [];
+	const fireworkQ = 20;
+	for (let i = 1; i <= fireworkQ; i++){
+		fireworks.push(new Firework(i))
+	}
+	
 	const background = new Background();
 	function animate () {
 		context.clearRect(0,0,canvas.width,canvas.height);
 		background.draw();
-		firework.draw();
-		firework2.draw();
-		firework3.draw();
+		for (let i = 1; i < fireworkQ; i++){
+			fireworks[i].draw()
+		}
 		requestAnimationFrame(animate)
 	}
 	animate();
