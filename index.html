@@ -1,13 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Document</title>
-	<link href="./style.css" rel="stylesheet" />
-</head>
-<body>
-	<canvas id="canvas"></canvas>
-	<script src="canvas.js"></script>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link href="./style.css" rel="stylesheet" />
+  </head>
+  <body>
+    <canvas id="canvas"></canvas>
+    <fieldset>
+      <legend>controls</legend>
+	  <div><label>firework quantity (currently: <span id='fireworkQ'></span>)</label><input type="range" min="1" max="20" id="fireworkQInputRange"/></div>
+      <div><label>smallest</label><input type="range" /></div>
+      <div><label>biggest</label><input type="range" /></div>
+      <label>shape:</label>
+      <div>
+        <label>circle</label
+        ><input type="radio" name="shape" id="circle" checked />
+      </div>
+      <div>
+        <label>square</label><input type="radio" name="shape" id="square" />
+      </div>
+    </fieldset>
+    <script src="canvas.js"></script>
+  </body>
 </html>

@@ -1,7 +1,26 @@
 (function () {
 
 
+	const fireworkQText = document.getElementById("fireworkQ");
+	const fireworkQInputRange = document.getElementById("fireworkQInputRange");
+	let fireworks = [];
+	let fireworkQ = 5;
+	fireworkQText.innerText = fireworkQ;
+	fireworkQInputRange.value = fireworkQ;
 
+	fireworkQInputRange.addEventListener('change', e => {
+
+
+		fireworks = [];
+		fireworkQ = e.target.value;
+		fireworkQText.innerText = fireworkQ;
+
+		for (let i = 0; i <= fireworkQ; i++){
+			let size = i + 5;
+			fireworks.push(new Firework(size))
+		}
+	})
+	
 
 	const canvas = document.getElementById('canvas');
 	canvas.width = 600;
@@ -106,8 +125,8 @@
 			context.fill();
 		}
 	}
-	const fireworks = [];
-	const fireworkQ = 20;
+
+
 	for (let i = 1; i <= fireworkQ; i++){
 		fireworks.push(new Firework(i))
 	}
@@ -116,7 +135,7 @@
 	function animate () {
 		context.clearRect(0,0,canvas.width,canvas.height);
 		background.draw();
-		for (let i = 1; i < fireworkQ; i++){
+		for (let i = 0; i < fireworkQ; i++){
 			fireworks[i].draw()
 		}
 		requestAnimationFrame(animate)

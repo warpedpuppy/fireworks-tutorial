@@ -10,3 +10,9 @@ canvas {
 	display: block;
 	margin: 10px auto;
 }
+
+fieldset {
+	width: 600px;
+	margin: 20px auto;
+	text-align: center;
+}
